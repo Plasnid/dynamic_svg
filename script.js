@@ -1,51 +1,3 @@
-/*
-    Linda Cheng 100123456
-    randomly generated the cx, cy, r and x and y
-*/
-/*
-window.onload = function () {
-    // reference the svg
-    let myObj = document.getElementById('obj').contentDocument;
-    // reference specific target
-    let myDots = myObj.getElementsByClassName('dotStyle');
-    // reference the background
-    let myBkground = myObj.getElementById('bkground');
-    // colorList - a list of color
-    let colorList = ['orange', 'peachpuff', 'blue', 'pink',
-    'violet', 'lime', 'peru', 'teal', 'red', 'green', 'brown', 'coral'];
-
-    // animation
-
-    gsap.to(myBkground, {
-    //    fill: 'rgb(random(0,255), random(0,255), random(0,255))',
-        fill: 'rgb(200, random(0,200), random(0,200))',
-        ease: 'none',
-        duration: 10,
-        repeat: -1,
-        yoyo: true
-    });
-
-    gsap.fromTo(myDots, {
-        attr: {
-            cx: 'random(10, 800)',
-            r: 'random(2, 30)'
-        }, 
-        y: -300,     
-        fill: gsap.utils.wrap(colorList)
-    },
-    {
-        y: 820,
-        duration: 'random(1, 3)',
-        ease: 'none',
-        stagger: {
-            each: .2,
-            repeat: -1,
-            repeatRefresh: true
-        }
-    })
-
-}
-*/
 // * dynamic svg circle drops
 
 let svgDisplay = document.querySelector("svg");
@@ -61,13 +13,13 @@ function randoValFloat(valMax){
 }
 
 function dotMotion(shapeElement){
-    gsap.fromTo(shapeElement, {cy:Math.random()*(60)*(-1)},{cy:600, duration:randoVal(20), repeat:12});
+    gsap.fromTo(shapeElement, {cy:Math.random()*(60)*(-1)},{cy:600, duration:randoVal(30)+2, repeat:12});
 }
 
 function buildCircles(xMax,yMax,radMax){
     let shape = document.createElementNS(schemaData, "circle");
     shape.setAttribute("cx", randoVal(xMax));
-    shape.setAttribute("cy", -30);
+    shape.setAttribute("cy", 0);
     shape.setAttribute("r",  randoVal(radMax));
     shape.setAttribute("fill", `rgb(${randoVal(255)},${randoVal(255)},${randoVal(255)})`);
     svgDisplay.appendChild(shape);
@@ -79,4 +31,4 @@ function populateScreen(numShapes){
         buildCircles(400,400,30);
     }
 }
-populateScreen(100);
+populateScreen(300);
