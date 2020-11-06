@@ -1,22 +1,22 @@
 // * dynamic svg circle drops
-
 let svgDisplay = document.querySelector("svg");
 let schemaData = "http://www.w3.org/2000/svg";
-//let shape = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 let shapesArray = [];
 function randoVal(valMax){
     return Math.floor(Math.random()*valMax);
 }
-
+// * generates random values with floats, used for velocity
 function randoValFloat(valMax){
     return Math.random()*valMax;
 }
 
+// * initializes motion on an individual element
 function dotMotion(shapeElement){
     gsap.fromTo(shapeElement, {cy:Math.random()*(60)*(-1)},{cy:600, duration:randoVal(30)+2, repeat:12});
 }
 
-function buildCircles(xMax,yMax,radMax){
+// * generate circles with random x, colour, radius
+function buildCircles(xMax,radMax){
     let shape = document.createElementNS(schemaData, "circle");
     shape.setAttribute("cx", randoVal(xMax));
     shape.setAttribute("cy", 0);
@@ -26,9 +26,10 @@ function buildCircles(xMax,yMax,radMax){
     dotMotion(shape);
     shapesArray.push(shape);
 }
+// *select how far across the screen the shapes are generated and their max radius
 function populateScreen(numShapes){
     for(let i=0;i<numShapes;i++){
-        buildCircles(400,400,30);
+        buildCircles(400,30);
     }
 }
 populateScreen(300);
